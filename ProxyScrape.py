@@ -1,29 +1,28 @@
 import requests
 Proxy = open('Proxies.txt', 'a')
-TimeOut = input("TimeOut : ")
-print("Example : US")
+print(" US | DE | ZA | ES | CN | RU | FR | GB | RO | BR | SG | KH")
 Country = input("Country : ")
-print("1. Http , 2. Https , 3. All")
-Type = input(": ")
-if Type == '1':
+print("HTTP | SOCKS4 | SOCKS5")
+Type = input("Proxy Type: ")
+if Type == 'HTTP':
     Update = f'https://api.proxyscrape.com?request=lastupdated&proxytype=http'
-    Api = f'https://api.proxyscrape.com?request=displayproxies&proxytype=http&timeout={TimeOut}&country={Country}&anonymity=elite&ssl=no'
+    Api = f'https://api.proxyscrape.com?request=displayproxies&proxytype=http&anonymity=all&ssl=all'
     Update1 = requests.get(Update)
     print("Updated : " + Update1.text)
     Api1 = requests.get(Api)
     print(Api1.text)
     Proxy.write(Api1.text)
-elif Type == '2':
-    Update1 = f'https://api.proxyscrape.com?request=lastupdated&proxytype=http'
-    Api1 = f'https://api.proxyscrape.com?request=displayproxies&proxytype=https&timeout={TimeOut}&country={Country}&anonymity=elite&ssl=no'
+elif Type == 'SOCKS4':
+    Update1 = f'https://api.proxyscrape.com?request=lastupdated&proxytype=socks4'
+    Api1 = f'https://api.proxyscrape.com?request=displayproxies&proxytype=socks4'
     Update2 = requests.get(Update1)
     print("Updated : " + Update2.text)
     Api2 = requests.get(Api1)
     print(Api2.text)
     Proxy.write(Api2.text)
-elif Type == '3':
-    Update2 = f'https://api.proxyscrape.com?request=lastupdated&proxytype=all'
-    Api2 = f'https://api.proxyscrape.com?request=displayproxies&proxytype=all&timeout={TimeOut}&country={Country}&anonymity=elite&ssl=no'
+elif Type == 'SOCKS5':
+    Update2 = f'https://api.proxyscrape.com?request=lastupdated&proxytype=socks5'
+    Api2 = f'https://api.proxyscrape.com?request=displayproxies&proxytype=socks5'
     Update3 = requests.get(Update2) 
     print("Updated : " + Update3.text)
     Api3 = requests.get(Api2)
